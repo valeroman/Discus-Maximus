@@ -1,0 +1,17 @@
+# Tasks — 03 Enemigos y Combate
+- [ ] 1. HealthComponent, HurtboxComponent (con shielded_arc opcional) y HitboxComponent.
+- [ ] 2. Refactor: jugador y disco usan los componentes (reemplaza lógica ad-hoc de la spec 02).
+- [ ] 3. EnemyData resource + data/balance.tres con fórmula de escalado.
+- [ ] 4. EnemyBase con FSM + NavigationAgent2D + navegación en la arena (NavigationRegion2D).
+- [ ] 5. Rusher completo (telegraph, lunge bloqueable, recover, muerte con partículas).
+- [ ] 6. Daño al jugador: vidas, i-frames 1s, flash rojo, shake fuerte, player_died → reinicio de arena.
+- [ ] 7. Hit-stop + knockback + flash blanco en todo impacto del disco.
+- [ ] 8. Lancer con keep-range y proyectil parryable (probar parry → mata al propio Lancer: momentazo).
+- [ ] 9. Warden con arco escudado frontal; vulnerable a espalda y disco RETURNING.
+- [ ] 10. Splitter + mini-splitters.
+- [ ] 11. Chispas de energía con imán de proximidad y recogida.
+- [ ] 12. ComboSystem con multiplicador y ventana de 3s.
+- [ ] 13. Carambola: kills por vuelo del disco, celebración con texto + slowmo + bonus.
+- [ ] 14. Escena de sandbox con mezcla de arquetipos para balancear valores en los .tres.
+- [ ] 15. Retirar TrainingDummy.
+- [ ] ✅ Checkpoint: el combate mixto es legible y divertido; cada arquetipo exige una respuesta distinta.

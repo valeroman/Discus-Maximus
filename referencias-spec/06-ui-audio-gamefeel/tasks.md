@@ -1,0 +1,15 @@
+# Tasks — 06 UI, Audio y Game Feel
+- [ ] 1. SceneManager con transiciones de fade y flujo completo de pantallas.
+- [ ] 2. Menú principal + selector de mundos/niveles con estrellas y bloqueos.
+- [ ] 3. HUD definitivo (vidas, disco 3 estados, dash, combo animado, moneda, oleada, barra de jefe).
+- [ ] 4. Pausa + Ajustes (volúmenes, idioma, accesibilidad, remapeo).
+- [ ] 5. Resultados de nivel/mundo y pantalla de derrota con retry ≤ 2s.
+- [ ] 6. i18n: strings.csv ES/EN y migración de todos los textos a claves.
+- [ ] 7. AudioManager definitivo: buses, pool con variación de pitch, música por stems con capa de jefe.
+- [ ] 8. Integrar todos los SFX y las 3 músicas de mundo (+ tema de menú).
+- [ ] 9. Implementar la tabla de game feel completa en Juice y conectarla por EventBus.
+- [ ] 10. Accesibilidad: reducir efectos, tamaño de HUD, vibración móvil opcional.
+- [ ] 11. Arte final: tileset iso de los 3 mundos con emisión neón (shader/halos según plataforma).
+- [ ] 12. Arte final: jugador (idle/run/throw/block/dash), 4 enemigos + élites, 3 jefes, disco y VFX.
+- [ ] 13. Pase de cohesión visual + grabar clip de 15s de gameplay (test del "clip compartible").
+- [ ] ✅ Checkpoint: un tester nuevo juega sin explicación y quiere reintentar al morir.

@@ -1,0 +1,16 @@
+# Tasks — 05 Jefes y Meta-progresión
+- [ ] 1. danger_zone.tscn reutilizable (telegraph con relleno temporal → hitbox).
+- [ ] 2. BossBase: FSM de patrones con corrutinas + PhaseController + barra de vida de jefe en HUD.
+- [ ] 3. Overseer completo (3 patrones, 2 fases) + nivel 5 del mundo 1.
+- [ ] 4. Transiciones de fase (VFX + señal para capa musical) y muerte de jefe con celebración.
+- [ ] 5. SaveManager completo: guardado atómico del modelo de datos, carga al inicio.
+- [ ] 6. Desbloqueo de mundos y persistencia de estrellas/moneda/mejor puntuación.
+- [ ] 7. La Forja: resources, UI, compras y aplicación de modifiers permanentes en get_stat().
+- [ ] 8. ★ HITO DEMO: mundo 1 completo jugable de inicio a fin → candidato a publicar en itch.io.
+- [ ] 9. Élites (flag + tinte + twists de Rusher y Lancer élite).
+- [ ] 10. Mundo 2: arena nueva, niveles 1–4 (.tres) con élites y mezclas nuevas.
+- [ ] 11. Twin Warden completo (vida compartida, órbita espejo, láser conjunto, 2 fases).
+- [ ] 12. Mundo 3: arena nueva, niveles 1–4 con máxima intensidad.
+- [ ] 13. Core Prime completo (ArenaShrinker, láseres, lluvia de discos, 3 fases).
+- [ ] 14. Pase de balance de los 3 mundos ajustando solo .tres.
+- [ ] ✅ Checkpoint: cada jefe se siente como un examen de una mecánica (rebote / parry / dash+bloqueo).

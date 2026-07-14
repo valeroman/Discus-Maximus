@@ -1,0 +1,17 @@
+# Tasks — 02 Jugador, Disco y Escudo
+- [ ] 1. Crear `data/player_stats.tres` (Resource tipado) con todos los parámetros de diseño.
+- [ ] 2. Player: movimiento 8 direcciones con aceleración/fricción leyendo el resource.
+- [ ] 3. Apuntado: dirección al cursor + rotación de `ShieldPivot`.
+- [ ] 4. Dash con i-frames, cooldown y feedback visual.
+- [ ] 5. Disc: escena + FSM HELD/FLYING/RETURNING; lanzamiento con `throw`.
+- [ ] 6. Rebote en paredes con `bounce(normal)` + contador leído de GameState.
+- [ ] 7. Retorno curvo con steering, atraviesa paredes, recogida con señal `disc_caught`.
+- [ ] 8. Recall manual + timeout de 4s.
+- [ ] 9. Bloqueo: estado BLOCK solo con disco en mano, escudo frontal, velocidad 40%, no lanzar.
+- [ ] 10. Proyectil genérico `projectile.tscn` (flag parryable) + TrainingDummy que dispara cada 2s.
+- [ ] 11. Bloqueo absorbe golpes frontales (knockback leve + shake); por la espalda el daño entra.
+- [ ] 12. Parry perfecto: ventana 0.15s, refleja proyectil con daño ×2, slowmo + VFX cian.
+- [ ] 13. Preview de trayectoria con primer rebote (Line2D + raycast).
+- [ ] 14. Juice v1: estela del disco, SFX placeholder (lanzar/rebote/recoger/bloquear/parry), shake leve.
+- [ ] 15. Números de daño flotantes.
+- [ ] ✅ Checkpoint CRÍTICO: 10 min de juego libre deben ser divertidos. Iterar los valores del .tres hasta lograrlo.

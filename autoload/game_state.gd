@@ -1,13 +1,13 @@
 extends Node
 
-var health: int
-var max_health: int
-var currency: int
-var combo_count: int
+var hp: int
+var max_hp: int
+var currency_run: int
+var combo: int
 var active_upgrades: Array = []
 
 func get_stat(stat_name: String) -> float:
-	pass
+	return 0.0
 
 func reset_run() -> void:
 	pass

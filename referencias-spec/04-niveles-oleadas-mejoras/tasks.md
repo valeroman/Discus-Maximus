@@ -1,0 +1,16 @@
+# Tasks — 04 Niveles, Oleadas y Mejoras
+- [ ] 1. Resources WaveData y LevelData + los .tres del mundo 1 (niveles 1–4 según design).
+- [ ] 2. spawn_portal.tscn con telegraph de 1s.
+- [ ] 3. WaveManager: secuencia de oleadas, conteo de vivos, señales, puerta de salida.
+- [ ] 4. LevelBase con zonas de spawn y NavigationRegion2D; migrar la arena de pruebas.
+- [ ] 5. UpgradeData resource + pool de 10 mejoras (datos + iconos placeholder).
+- [ ] 6. GameState.get_stat() sumando modificadores + sistema de behaviors por composición.
+- [ ] 7. UpgradePicker UI: 3 cartas, tirada ponderada por rareza, aplicar y continuar.
+- [ ] 8. Implementar behaviors: disco explosivo, perforante, retorno teledirigido.
+- [ ] 9. Implementar behaviors de escudo: parry ampliado y escudo espejo.
+- [ ] 10. Implementar doble disco (legendaria).
+- [ ] 11. Run flow: start_run/end_run, muerte reinicia mundo conservando moneda bancarizada.
+- [ ] 12. Sistema de estrellas con umbrales por nivel + guardado.
+- [ ] 13. Encadenar niveles 1→4 del mundo 1 con transición y pantalla de resultados provisional.
+- [ ] 14. Sesión de balance jugando el mundo completo; ajustar solo .tres.
+- [ ] ✅ Checkpoint: el loop nivel→mejora→nivel produce el efecto "una más".

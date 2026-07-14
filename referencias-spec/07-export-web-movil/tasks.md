@@ -1,0 +1,14 @@
+# Tasks — 07 Controles táctiles, Optimización y Export
+- [ ] 1. InputAdapter con implementaciones teclado/mouse y táctil; refactor del Player para usarlo.
+- [ ] 2. Joystick virtual flotante izquierdo.
+- [ ] 3. Drag & release derecho con preview de trayectoria; tap = recall; hold = bloquear (parry incluido).
+- [ ] 4. Botón de dash táctil + verificación multitouch de acciones simultáneas.
+- [ ] 5. HUD y controles responsivos a los 4 ratios con zonas seguras.
+- [ ] 6. ObjectPool genérico aplicado a proyectiles, chispas, números, partículas y enemigos.
+- [ ] 7. QualityManager con degradación automática (glow→halos, partículas 50%).
+- [ ] 8. Auto-pause al perder foco/segundo plano + autosave en los 3 eventos.
+- [ ] 9. Pase de optimización: atlas de texturas, perfilado con el profiler en navegador y móvil real.
+- [ ] 10. Build web final ≤ 30 MB con loader personalizado; prueba embebida en itch.io (Chrome/Firefox/Safari).
+- [ ] 11. Build Android firmada con iconos y splash; prueba completa en dispositivo de gama media.
+- [ ] 12. QA final: checklist de los criterios de aceptación de TODAS las specs anteriores.
+- [ ] ✅ v1.0 lista para publicar. Backlog v1.1: leaderboard online, modo infinito, desafío diario con seed, duelo local 1v1.
