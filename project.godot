@@ -79,6 +79,16 @@ pause={
 ]
 }
 
+[layer_names]
+
+2d_physics/1="player"
+2d_physics/2="walls"
+2d_physics/3="enemies"
+2d_physics/4="player_disc"
+2d_physics/5="enemy_projectiles"
+2d_physics/6="pickups"
+2d_physics/7="shield"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
