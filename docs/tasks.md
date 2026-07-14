@@ -10,6 +10,7 @@
 - [x] 0.3 Registrar autoloads vacíos: EventBus, GameState, SaveManager, AudioManager, Juice.
 - [x] 0.4 Configurar Input Map: move_*, aim, throw, recall, dash, pause.
 - [ ] 0.5 Export preset HTML5 y prueba de build vacía en navegador.
+- [x] 0.6 Definir y nombrar las 7 capas de física (Project Settings) + matriz de colisión de referencia.
 
 ## Fase 1 · Núcleo jugable: jugador + disco (hito: lanzar y recuperar se siente BIEN)
 - [ ] 1.1 Player: CharacterBody2D, movimiento 8 direcciones con aceleración/fricción, sprite placeholder.

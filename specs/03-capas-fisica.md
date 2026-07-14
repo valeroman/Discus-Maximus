@@ -1,6 +1,6 @@
 # SPEC 03 — Capas de física 2D: nombres y matriz de colisión
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [01-autoloads-base.md](01-autoloads-base.md), [02-input-map-teclado-mouse.md](02-input-map-teclado-mouse.md)
 > **Date:** 2026-07-14
 > **Objective:** Nombrar las 7 capas de física 2D en Project Settings (`player`, `walls`, `enemies`, `player_disc`, `enemy_projectiles`, `pickups`, `shield`) y documentar la matriz de colisión (layer/mask) de referencia que usarán las escenas de Fase 1-2 cuando se creen.
@@ -36,13 +36,13 @@ Esta spec no introduce estructuras de datos nuevas (no hay `Resource` ni clases)
 ```ini
 [layer_names]
 
-2d_physics/1="player"
-2d_physics/2="walls"
-2d_physics/3="enemies"
-2d_physics/4="player_disc"
-2d_physics/5="enemy_projectiles"
-2d_physics/6="pickups"
-2d_physics/7="shield"
+2d_physics/layer_1="player"
+2d_physics/layer_2="walls"
+2d_physics/layer_3="enemies"
+2d_physics/layer_4="player_disc"
+2d_physics/layer_5="enemy_projectiles"
+2d_physics/layer_6="pickups"
+2d_physics/layer_7="shield"
 ```
 
 **Matriz de colisión de referencia** (`collision_layer` = en qué capa está el nodo; `collision_mask` = qué capas detecta/con qué colisiona):
@@ -66,19 +66,19 @@ Convenciones:
 ## Implementation plan
 
 1. Abrir `project.godot` y localizar (o crear) la sección `[layer_names]`.
-2. Definir las 7 claves `2d_physics/1` a `2d_physics/7` con los nombres `player`, `walls`, `enemies`, `player_disc`, `enemy_projectiles`, `pickups`, `shield` en ese orden.
+2. Definir las 7 claves `2d_physics/layer_1` a `2d_physics/layer_7` con los nombres `player`, `walls`, `enemies`, `player_disc`, `enemy_projectiles`, `pickups`, `shield` en ese orden.
 3. Abrir el proyecto en el editor de Godot y verificar en Project Settings → General → Layer Names → 2D Physics que las 7 capas aparecen con los nombres correctos en las posiciones 1-7.
 4. Agregar la tarea `0.6 Definir y nombrar las 7 capas de física (Project Settings) + matriz de colisión de referencia.` a `docs/tasks.md`, en la Fase 0, después de la tarea `0.5`.
 5. Marcar la tarea `0.6` como `[x]` en `docs/tasks.md`.
 
 ## Acceptance criteria
 
-- [ ] `project.godot` tiene una sección `[layer_names]` con exactamente 7 claves `2d_physics/1` a `2d_physics/7`.
-- [ ] `2d_physics/1` = `"player"`, `2d_physics/2` = `"walls"`, `2d_physics/3` = `"enemies"`, `2d_physics/4` = `"player_disc"`, `2d_physics/5` = `"enemy_projectiles"`, `2d_physics/6` = `"pickups"`, `2d_physics/7` = `"shield"`.
-- [ ] Project Settings → General → Layer Names → 2D Physics (editor de Godot) muestra las 7 capas con esos nombres en esas posiciones, sin errores al abrir el proyecto.
-- [ ] Esta spec documenta la matriz de colisión de referencia (tabla `collision_layer`/`collision_mask` por entidad) en su sección "Data model".
-- [ ] `docs/tasks.md` tiene la tarea `0.6` agregada en Fase 0 y marcada como `[x]`.
-- [ ] Ninguna escena, script ni nodo del proyecto fue creado o modificado (alcance limitado a `project.godot` y `docs/tasks.md`).
+- [x] `project.godot` tiene una sección `[layer_names]` con exactamente 7 claves `2d_physics/layer_1` a `2d_physics/layer_7`.
+- [x] `2d_physics/layer_1` = `"player"`, `2d_physics/layer_2` = `"walls"`, `2d_physics/layer_3` = `"enemies"`, `2d_physics/layer_4` = `"player_disc"`, `2d_physics/layer_5` = `"enemy_projectiles"`, `2d_physics/layer_6` = `"pickups"`, `2d_physics/layer_7` = `"shield"`.
+- [x] Project Settings → General → Layer Names → 2D Physics (editor de Godot) muestra las 7 capas con esos nombres en esas posiciones, sin errores al abrir el proyecto.
+- [x] Esta spec documenta la matriz de colisión de referencia (tabla `collision_layer`/`collision_mask` por entidad) en su sección "Data model".
+- [x] `docs/tasks.md` tiene la tarea `0.6` agregada en Fase 0 y marcada como `[x]`.
+- [x] Ninguna escena, script ni nodo del proyecto fue creado o modificado (alcance limitado a `project.godot` y `docs/tasks.md`).
 
 ## Decisions
 

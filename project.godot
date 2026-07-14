@@ -81,13 +81,13 @@ pause={
 
 [layer_names]
 
-2d_physics/1="player"
-2d_physics/2="walls"
-2d_physics/3="enemies"
-2d_physics/4="player_disc"
-2d_physics/5="enemy_projectiles"
-2d_physics/6="pickups"
-2d_physics/7="shield"
+2d_physics/layer_1="player"
+2d_physics/layer_2="walls"
+2d_physics/layer_3="enemies"
+2d_physics/layer_4="player_disc"
+2d_physics/layer_5="enemy_projectiles"
+2d_physics/layer_6="pickups"
+2d_physics/layer_7="shield"
 
 [physics]
 
