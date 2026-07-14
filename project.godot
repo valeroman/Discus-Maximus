@@ -27,6 +27,8 @@ Juice="*res://autoload/juice.gd"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[input]
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
