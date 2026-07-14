@@ -1,0 +1,16 @@
+extends Node
+
+signal disc_thrown(origin: Vector2, direction: Vector2)
+signal disc_bounced(position: Vector2, bounces_left: int)
+signal disc_caught()
+signal disc_recalled()
+signal enemy_died(enemy: Node2D, position: Vector2)
+signal player_damaged(amount: int, current_health: int)
+signal player_died()
+signal wave_started(wave_number: int)
+signal wave_cleared(wave_number: int)
+signal level_completed(level_id: String, stars: int)
+signal boss_phase_changed(phase: int)
+signal upgrade_selected(upgrade_id: String)
+signal combo_updated(combo_count: int)
+signal currency_changed(amount: int, total: int)

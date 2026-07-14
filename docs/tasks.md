@@ -7,7 +7,7 @@
 ## Fase 0 · Fundaciones (hito: proyecto corre en web)
 - [ ] 0.1 Crear proyecto Godot 4.x, renderer Compatibility, resolución base 1280×720, stretch `canvas_items` / aspect `expand`.
 - [ ] 0.2 Estructura de carpetas según design.md + `.gitignore` + repositorio Git.
-- [ ] 0.3 Registrar autoloads vacíos: EventBus, GameState, SaveManager, AudioManager, Juice.
+- [x] 0.3 Registrar autoloads vacíos: EventBus, GameState, SaveManager, AudioManager, Juice.
 - [ ] 0.4 Configurar Input Map: move_*, aim, throw, recall, dash, pause.
 - [ ] 0.5 Export preset HTML5 y prueba de build vacía en navegador.
 

@@ -14,6 +14,14 @@ config/name="Discus-maximus"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+EventBus="*res://autoload/event_bus.gd"
+GameState="*res://autoload/game_state.gd"
+SaveManager="*res://autoload/save_manager.gd"
+AudioManager="*res://autoload/audio_manager.gd"
+Juice="*res://autoload/juice.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"
