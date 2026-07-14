@@ -1,6 +1,6 @@
 # SPEC 02 — Input Map: teclado y mouse
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [01-autoloads-base.md](01-autoloads-base.md)
 > **Date:** 2026-07-14
 > **Objective:** Definir en `project.godot` las acciones de Input Map (`move_up/down/left/right`, `throw`, `recall`, `block`, `dash`, `pause`) con sus bindings de teclado y mouse por defecto, sin lógica de gameplay ni UI de remapeo.
@@ -63,19 +63,19 @@ Esta spec no introduce estructuras de datos nuevas (no hay `Resource`, clases ni
 
 ## Acceptance criteria
 
-- [ ] `project.godot` tiene una sección `[input]` con exactamente 9 acciones: `move_up`, `move_down`, `move_left`, `move_right`, `throw`, `recall`, `block`, `dash`, `pause`.
-- [ ] `move_up` responde a **W** y **Flecha arriba**.
-- [ ] `move_down` responde a **S** y **Flecha abajo**.
-- [ ] `move_left` responde a **A** y **Flecha izquierda**.
-- [ ] `move_right` responde a **D** y **Flecha derecha**.
-- [ ] `throw` responde a **click izquierdo** del mouse.
-- [ ] `recall` responde a **click derecho** del mouse.
-- [ ] `block` responde a **Shift izquierdo**.
-- [ ] `dash` responde a **Espacio**.
-- [ ] `pause` responde a **Escape**.
-- [ ] Ninguna acción tiene bindings duplicados o en conflicto con otra acción.
-- [ ] Project Settings → Input Map (editor de Godot) muestra las 9 acciones y sus eventos correctamente, sin errores al abrir el proyecto.
-- [ ] `docs/tasks.md` tiene la tarea `0.4` marcada como `[x]`.
+- [x] `project.godot` tiene una sección `[input]` con exactamente 9 acciones: `move_up`, `move_down`, `move_left`, `move_right`, `throw`, `recall`, `block`, `dash`, `pause`.
+- [x] `move_up` responde a **W** y **Flecha arriba**.
+- [x] `move_down` responde a **S** y **Flecha abajo**.
+- [x] `move_left` responde a **A** y **Flecha izquierda**.
+- [x] `move_right` responde a **D** y **Flecha derecha**.
+- [x] `throw` responde a **click izquierdo** del mouse.
+- [x] `recall` responde a **click derecho** del mouse.
+- [x] `block` responde a **Shift izquierdo**.
+- [x] `dash` responde a **Espacio**.
+- [x] `pause` responde a **Escape**.
+- [x] Ninguna acción tiene bindings duplicados o en conflicto con otra acción.
+- [x] Project Settings → Input Map (editor de Godot) muestra las 9 acciones y sus eventos correctamente, sin errores al abrir el proyecto.
+- [x] `docs/tasks.md` tiene la tarea `0.4` marcada como `[x]`.
 
 ## Decisions
 

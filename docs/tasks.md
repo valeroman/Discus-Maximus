@@ -8,7 +8,7 @@
 - [ ] 0.1 Crear proyecto Godot 4.x, renderer Compatibility, resolución base 1280×720, stretch `canvas_items` / aspect `expand`.
 - [ ] 0.2 Estructura de carpetas según design.md + `.gitignore` + repositorio Git.
 - [x] 0.3 Registrar autoloads vacíos: EventBus, GameState, SaveManager, AudioManager, Juice.
-- [ ] 0.4 Configurar Input Map: move_*, aim, throw, recall, dash, pause.
+- [x] 0.4 Configurar Input Map: move_*, aim, throw, recall, dash, pause.
 - [ ] 0.5 Export preset HTML5 y prueba de build vacía en navegador.
 
 ## Fase 1 · Núcleo jugable: jugador + disco (hito: lanzar y recuperar se siente BIEN)
