@@ -29,12 +29,10 @@ Detalle completo en `docs/design.md §2`.
 3. `/spec-impl NN-slug` → crea branch `spec-NN-slug` e implementa paso a paso con pausas para revisar diffs.
 4. Al completar: marcar la spec como `Implemented` y la tarea correspondiente como `[x]` en `docs/tasks.md`.
 
-**Pendiente:** `/spec-impl` requiere un repo git (crea branches). El proyecto aún no está inicializado como repo git — inicializarlo antes de usar `/spec-impl`.
-
 ## Estado actual
 - [x] 0.1 (parcial) Proyecto Godot 4.7, GL Compatibility, stretch canvas_items/expand.
+- [x] Repo git inicializado (rama `master`, commit inicial).
 - [ ] Resto de Fase 0 y siguientes → ver `docs/tasks.md`.
-- [ ] Inicializar repo git (requerido por `/spec-impl`).
 
 ## Convenciones
 - GDScript, `snake_case` archivos, `PascalCase` clases/nodos.
