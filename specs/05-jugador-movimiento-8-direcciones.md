@@ -1,6 +1,6 @@
 # SPEC 05 — Jugador: movimiento 8 direcciones con aceleración/fricción
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [03-capas-fisica.md](03-capas-fisica.md), [04-arena-de-pruebas.md](04-arena-de-pruebas.md)
 > **Date:** 2026-07-15
 > **Objective:** Crear `entities/player/player.tscn` (CharacterBody2D) que se mueve en 8 direcciones acelerando hasta velocidad máxima y frenando por fricción en ~0.1s, con los parámetros leídos desde un Resource tipado `data/player_stats.tres`, instanciado dentro de `levels/test_arena.tscn` para probarlo contra las paredes.
