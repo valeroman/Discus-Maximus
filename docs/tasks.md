@@ -14,7 +14,7 @@
 
 ## Fase 1 · Núcleo jugable: jugador + disco (hito: lanzar y recuperar se siente BIEN)
 - [ ] 1.1 Player: CharacterBody2D, movimiento 8 direcciones con aceleración/fricción, sprite placeholder.
-- [ ] 1.2 Arena de pruebas: TileMapLayer isométrico con paredes con colisión, Y-sort activo.
+- [x] 1.2 Arena de pruebas: TileMapLayer isométrico con paredes con colisión, Y-sort activo.
 - [ ] 1.3 Disc: escena con FSM HELD/FLYING/RETURNING; lanzamiento hacia el cursor.
 - [ ] 1.4 Rebote en paredes con `bounce(normal)` y contador de rebotes.
 - [ ] 1.5 Retorno con steering curvo hacia el jugador + recogida (señal `disc_caught`).

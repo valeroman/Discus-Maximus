@@ -1,6 +1,6 @@
 # SPEC 04 — Arena de pruebas: TileMapLayer isométrico con paredes
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [03-capas-fisica.md](03-capas-fisica.md)
 > **Date:** 2026-07-15
 > **Objective:** Crear `levels/test_arena.tscn` con dos `TileMapLayer` isométricos (suelo + paredes con colisión usando la capa física `walls`) y una `Camera2D` estática, usando tiles placeholder SVG propios, para tener un espacio jugable donde probar el movimiento del jugador (tarea 1.1) y los rebotes del disco (tarea 1.4).
@@ -77,18 +77,18 @@ Convención de coordenadas de celda: grilla total de 14 columnas (0–13) × 10 
 
 ## Acceptance criteria
 
-- [ ] Existen `assets/tiles/floor_tile.svg` y `assets/tiles/wall_tile.svg`, ambos rombos isométricos de 128×64 con colores distinguibles entre sí (paleta synthwave del proyecto).
-- [ ] Existe `assets/tiles/test_arena_tileset.tres` con `tile_shape = Isometric`, `tile_size = (128, 64)`, y 2 tiles (`floor`, `wall`).
-- [ ] El `TileSet` tiene exactamente 1 Physics Layer con `collision_layer` = solo el bit `walls` (bit 2) y `collision_mask = 0`.
-- [ ] Solo el tile `wall` tiene polígono de colisión asignado a ese Physics Layer; el tile `floor` no tiene colisión.
-- [ ] Existe `levels/test_arena.tscn` con nodo raíz `Node2D` `TestArena`, e hijos `Floor` (`TileMapLayer`), `Walls` (`TileMapLayer`) y `Camera` (`Camera2D`).
-- [ ] `Floor` tiene `y_sort_enabled = false` y rellena un interior de 12×8 tiles con el tile `floor`.
-- [ ] `Walls` tiene `y_sort_enabled = true` y rellena únicamente el perímetro de 1 tile alrededor del interior (arena total 14×10), con el tile `wall`. El interior de `Walls` está vacío.
-- [ ] `Camera` tiene `current = true`, está posicionada en el centro de la arena, y al ejecutar la escena (F6) se ve toda la arena sin recortes.
-- [ ] Al ejecutar la escena en el editor no aparecen errores ni warnings en la consola de Godot.
-- [ ] Activar "Visible Collision Shapes" en el editor muestra los polígonos de colisión únicamente sobre las celdas de `Walls`, con la forma del rombo completo del tile.
-- [ ] Ninguna escena de jugador, disco o enemigo fue creada, modificada ni instanciada en `test_arena.tscn`.
-- [ ] `docs/tasks.md` tiene la tarea `1.2` marcada como `[x]`.
+- [x] Existen `assets/tiles/floor_tile.svg` y `assets/tiles/wall_tile.svg`, ambos rombos isométricos de 128×64 con colores distinguibles entre sí (paleta synthwave del proyecto).
+- [x] Existe `assets/tiles/test_arena_tileset.tres` con `tile_shape = Isometric`, `tile_size = (128, 64)`, y 2 tiles (`floor`, `wall`).
+- [x] El `TileSet` tiene exactamente 1 Physics Layer con `collision_layer` = solo el bit `walls` (bit 2) y `collision_mask = 0`.
+- [x] Solo el tile `wall` tiene polígono de colisión asignado a ese Physics Layer; el tile `floor` no tiene colisión.
+- [x] Existe `levels/test_arena.tscn` con nodo raíz `Node2D` `TestArena`, e hijos `Floor` (`TileMapLayer`), `Walls` (`TileMapLayer`) y `Camera` (`Camera2D`).
+- [x] `Floor` tiene `y_sort_enabled = false` y rellena un interior de 12×8 tiles con el tile `floor`.
+- [x] `Walls` tiene `y_sort_enabled = true` y rellena únicamente el perímetro de 1 tile alrededor del interior (arena total 14×10), con el tile `wall`. El interior de `Walls` está vacío.
+- [x] `Camera` tiene `current = true`, está posicionada en el centro de la arena, y al ejecutar la escena (F6) se ve toda la arena sin recortes.
+- [x] Al ejecutar la escena en el editor no aparecen errores ni warnings en la consola de Godot.
+- [x] Activar "Visible Collision Shapes" en el editor muestra los polígonos de colisión únicamente sobre las celdas de `Walls`, con la forma del rombo completo del tile.
+- [x] Ninguna escena de jugador, disco o enemigo fue creada, modificada ni instanciada en `test_arena.tscn`.
+- [x] `docs/tasks.md` tiene la tarea `1.2` marcada como `[x]`.
 
 ## Decisions
 
