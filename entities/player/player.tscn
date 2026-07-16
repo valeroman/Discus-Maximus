@@ -8,10 +8,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 24.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_shield"]
+radius = 16.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1930510214]
 collision_mask = 54
 script = ExtResource("2_script")
 stats = ExtResource("3_stats")
+groups = ["player"]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=294300597]
 texture = ExtResource("1_sprite")
@@ -23,6 +27,15 @@ shape = SubResource("CircleShape2D_player")
 
 [node name="Disc" parent="ShieldPivot" instance=ExtResource("4_disc")]
 position = Vector2(24, 0)
+
+[node name="ShieldHitbox" type="Area2D" parent="ShieldPivot"]
+collision_layer = 64
+collision_mask = 16
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldPivot/ShieldHitbox"]
+position = Vector2(24, 0)
+shape = SubResource("CircleShape2D_shield")
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2
