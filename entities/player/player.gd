@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 
 	disc.modulate = Color("#00f0ff") if is_blocking else Color.WHITE
 
-	if Input.is_action_just_pressed("throw") and has_disc:
+	if Input.is_action_just_pressed("throw") and has_disc and not is_blocking:
 		var direction := (get_global_mouse_position() - global_position).normalized()
 		disc.throw(direction)
 		has_disc = false
