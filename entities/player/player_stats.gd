@@ -10,3 +10,6 @@ extends Resource
 @export var dash_cooldown: float = 2.0       # segundos antes de poder volver a dashear (RF-1.2)
 
 @export var block_speed_multiplier: float = 0.4   # fracción de move_speed mientras BLOCK está activo
+
+@export var block_knockback_speed: float = 250.0   # px/s, impulso al bloquear un golpe frontal
+@export var block_shake_intensity: float = 4.0      # px, magnitud del jitter de cámara al bloquear
