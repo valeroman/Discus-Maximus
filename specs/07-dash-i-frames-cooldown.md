@@ -1,6 +1,6 @@
 # SPEC 07 — Dash con i-frames, cooldown y feedback visual
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [05-jugador-movimiento-8-direcciones.md](05-jugador-movimiento-8-direcciones.md), [06-jugador-apuntado-cursor.md](06-jugador-apuntado-cursor.md)
 > **Date:** 2026-07-16
 > **Objective:** Agregar un dash corto al `Player` (tecla `dash`, ya mapeada a espacio) que impulsa al jugador en la dirección de movimiento activa durante 0.2s con `is_invulnerable = true` y parpadeo de alpha del sprite, seguido de un cooldown de 2s que bloquea reactivarlo.
