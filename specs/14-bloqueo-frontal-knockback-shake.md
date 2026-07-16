@@ -1,6 +1,6 @@
 # SPEC 14 — Bloqueo frontal: knockback + shake al parar golpes (espalda sin cambios)
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [12-bloqueo-estado-block.md](12-bloqueo-estado-block.md), [13-proyectil-generico-training-dummy.md](13-proyectil-generico-training-dummy.md)
 > **Date:** 2026-07-16
 > **Objective:** Agregar feedback de impacto al bloqueo frontal ya existente (`ShieldHitbox`/`is_blocking`, specs 12-13): al bloquear un `Projectile` `parryable`, aplicar un knockback leve al `Player` (nuevo `block_knockback_speed` en `PlayerStats`) e implementar un `Juice.shake()` mínimo real (jitter de cámara); los golpes que llegan por la espalda (fuera del `ShieldHitbox`, sin bloqueo) siguen destruyéndose contra el cuerpo del jugador sin ninguna consecuencia, exactamente igual que hoy, a la espera de la tarea 2.1 (`HealthComponent`).
@@ -117,19 +117,19 @@ Convenciones:
 
 ## Acceptance criteria
 
-- [ ] `PlayerStats` tiene `block_knockback_speed` (`float`, default `250.0`) y `block_shake_intensity` (`float`, default `4.0`) sin remover los 7 campos previos.
-- [ ] `data/player_stats.tres` tiene ambos campos nuevos seteados (y conserva `move_speed`, `acceleration_time`, `friction_time`, `dash_speed`, `dash_duration`, `dash_cooldown`, `block_speed_multiplier`).
-- [ ] `Juice.shake(intensity)` tiene una implementación real (no `pass`): al llamarla con una `Camera2D` activa en el árbol, la propiedad `offset` de esa cámara varía brevemente y vuelve a `Vector2.ZERO`.
-- [ ] `Juice.hit_stop()`, `Juice.slowmo()` y `Juice.flash_sprite()` siguen siendo `pass` (sin cambios).
-- [ ] Al bloquear un `Projectile` con `parryable = true` (`is_blocking = true` y el proyectil entra en `ShieldHitbox`): el proyectil se destruye, `EventBus.disc_blocked(false)` se emite (sin cambios de spec 13), el `Player` recibe un impulso de velocidad en la dirección en que viajaba el proyectil (`stats.block_knockback_speed`), y se llama `Juice.shake(stats.block_shake_intensity)`.
-- [ ] El impulso de knockback se disipa solo mediante el `move_toward` de aceleración/fricción ya existente (sin temporizador ni estado nuevo), y no impide seguir moviéndose ni bloqueando en los frames siguientes.
-- [ ] Un `Projectile` con `parryable = false` que entra en `ShieldHitbox` **no** dispara knockback ni shake (sigue de largo, igual que spec 13).
-- [ ] Un `Projectile` (`parryable` o no) que golpea el cuerpo principal del `Player` **sin** pasar por `ShieldHitbox` (por la espalda, o sin `is_blocking`) se destruye sin ningún efecto — sin knockback, sin shake, sin daño real — exactamente igual que spec 13.
-- [ ] No se agrega `HealthComponent`, `HurtboxComponent`, HP ni ninguna señal nueva a `EventBus`.
-- [ ] No se agrega lógica de ángulo/cono frontal-espalda; la distinción sigue siendo puramente geométrica vía la posición del `ShieldHitbox`.
-- [ ] La `Camera2D` de `test_arena.tscn` no cambia (sigue estática, sin seguimiento del `Player`).
-- [ ] `docs/tasks.md` no se modifica.
-- [ ] F6 en `test_arena.tscn`: los 4 escenarios del plan (bloqueo con feedback, bloqueo repetido sin estado inconsistente, golpe sin bloquear sin efecto, `parryable = false` sin efecto) se comportan como se describe, sin errores en consola, repetible varias veces.
+- [x] `PlayerStats` tiene `block_knockback_speed` (`float`, default `250.0`) y `block_shake_intensity` (`float`, default `4.0`) sin remover los 7 campos previos.
+- [x] `data/player_stats.tres` tiene ambos campos nuevos seteados (y conserva `move_speed`, `acceleration_time`, `friction_time`, `dash_speed`, `dash_duration`, `dash_cooldown`, `block_speed_multiplier`).
+- [x] `Juice.shake(intensity)` tiene una implementación real (no `pass`): al llamarla con una `Camera2D` activa en el árbol, la propiedad `offset` de esa cámara varía brevemente y vuelve a `Vector2.ZERO`.
+- [x] `Juice.hit_stop()`, `Juice.slowmo()` y `Juice.flash_sprite()` siguen siendo `pass` (sin cambios).
+- [x] Al bloquear un `Projectile` con `parryable = true` (`is_blocking = true` y el proyectil entra en `ShieldHitbox`): el proyectil se destruye, `EventBus.disc_blocked(false)` se emite (sin cambios de spec 13), el `Player` recibe un impulso de velocidad en la dirección en que viajaba el proyectil (`stats.block_knockback_speed`), y se llama `Juice.shake(stats.block_shake_intensity)`.
+- [x] El impulso de knockback se disipa solo mediante el `move_toward` de aceleración/fricción ya existente (sin temporizador ni estado nuevo), y no impide seguir moviéndose ni bloqueando en los frames siguientes.
+- [x] Un `Projectile` con `parryable = false` que entra en `ShieldHitbox` **no** dispara knockback ni shake (sigue de largo, igual que spec 13).
+- [x] Un `Projectile` (`parryable` o no) que golpea el cuerpo principal del `Player` **sin** pasar por `ShieldHitbox` (por la espalda, o sin `is_blocking`) se destruye sin ningún efecto — sin knockback, sin shake, sin daño real — exactamente igual que spec 13.
+- [x] No se agrega `HealthComponent`, `HurtboxComponent`, HP ni ninguna señal nueva a `EventBus`.
+- [x] No se agrega lógica de ángulo/cono frontal-espalda; la distinción sigue siendo puramente geométrica vía la posición del `ShieldHitbox`.
+- [x] La `Camera2D` de `test_arena.tscn` no cambia (sigue estática, sin seguimiento del `Player`).
+- [x] `docs/tasks.md` no se modifica.
+- [x] F6 en `test_arena.tscn`: los 4 escenarios del plan (bloqueo con feedback, bloqueo repetido sin estado inconsistente, golpe sin bloquear sin efecto, `parryable = false` sin efecto) se comportan como se describe, sin errores en consola, repetible varias veces.
 
 ## Decisions
 
