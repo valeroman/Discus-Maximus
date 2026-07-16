@@ -3,10 +3,18 @@ extends CharacterBody2D
 @export var stats: PlayerStats
 
 @onready var shield_pivot: Node2D = $ShieldPivot
+@onready var sprite: Sprite2D = $Sprite2D
 @onready var dash_timer: Timer = $DashTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 
 var is_invulnerable: bool = false
+
+func _ready() -> void:
+	dash_timer.timeout.connect(_on_dash_timer_timeout)
+
+func _on_dash_timer_timeout() -> void:
+	is_invulnerable = false
+	sprite.modulate.a = 1.0
 
 func _physics_process(delta: float) -> void:
 	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
