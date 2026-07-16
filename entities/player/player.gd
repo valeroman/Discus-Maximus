@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var dash_timer: Timer = $DashTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 @onready var disc: Disc = $ShieldPivot/Disc
+@onready var shield_hitbox: Area2D = $ShieldPivot/ShieldHitbox
 
 var is_invulnerable: bool = false
 var has_disc: bool = true
@@ -15,6 +16,7 @@ var is_blocking: bool = false
 func _ready() -> void:
 	dash_timer.timeout.connect(_on_dash_timer_timeout)
 	EventBus.disc_caught.connect(_on_disc_caught)
+	shield_hitbox.body_entered.connect(_on_shield_hitbox_body_entered)
 
 func _on_dash_timer_timeout() -> void:
 	is_invulnerable = false
@@ -22,6 +24,10 @@ func _on_dash_timer_timeout() -> void:
 
 func _on_disc_caught() -> void:
 	has_disc = true
+
+func _on_shield_hitbox_body_entered(body: Node2D) -> void:
+	if body is Projectile and body.stats.parryable:
+		body.block()
 
 func _physics_process(delta: float) -> void:
 	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -35,6 +41,7 @@ func _physics_process(delta: float) -> void:
 		dash_cooldown_timer.start()
 
 	is_blocking = Input.is_action_pressed("block") and has_disc and not is_invulnerable
+	shield_hitbox.monitoring = is_blocking
 
 	if not is_invulnerable:
 		var speed := stats.move_speed * (stats.block_speed_multiplier if is_blocking else 1.0)
