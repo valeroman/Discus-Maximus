@@ -19,3 +19,11 @@ texture = ExtResource("1_sprite")
 shape = SubResource("CircleShape2D_player")
 
 [node name="ShieldPivot" type="Node2D" parent="."]
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
