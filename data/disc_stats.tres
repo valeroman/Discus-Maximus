@@ -6,3 +6,6 @@
 script = ExtResource("1_stats")
 fly_speed = 900.0
 max_bounces = 2
+return_speed = 700.0
+return_turn_rate = 4.0
+catch_radius = 20.0
