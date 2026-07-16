@@ -6,3 +6,4 @@ extends Resource
 @export var return_speed: float = 700.0      # px/s, velocidad durante RETURNING (RF-2.4)
 @export var return_turn_rate: float = 4.0    # rad/s, tasa máxima de giro del steering (curva del retorno)
 @export var catch_radius: float = 20.0       # px, distancia al jugador para considerar el disco recogido
+@export var flight_timeout: float = 4.0      # s, tiempo máx desde throw hasta forzar recogida (seguridad anti-atasco, tarea 1.6)
