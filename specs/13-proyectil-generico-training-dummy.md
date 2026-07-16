@@ -1,6 +1,6 @@
 # SPEC 13 — Proyectil genérico parryable + TrainingDummy
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [03-capas-fisica.md](03-capas-fisica.md), [12-bloqueo-estado-block.md](12-bloqueo-estado-block.md)
 > **Date:** 2026-07-16
 > **Objective:** Crear `projectile.tscn` (proyectil genérico con flag `parryable`) y `TrainingDummy` (dispara hacia el jugador cada 2s), agregando el primer `ShieldHitbox` real para que el bloqueo de spec 12 detenga proyectiles `parryable` en pruebas manuales.
@@ -150,22 +150,22 @@ Convenciones:
 
 ## Acceptance criteria
 
-- [ ] `ProjectileData` (`Resource`) existe con `speed: float`, `lifetime: float`, `parryable: bool`; `data/projectile_data.tres` tiene los 3 campos con los valores por defecto (`400.0`, `3.0`, `true`).
-- [ ] `Projectile` (`CharacterBody2D`) viaja en línea recta a `stats.speed` tras `launch(direction)`.
-- [ ] `Projectile` se autodestruye al chocar con una pared o con el jugador (colisión física, capa `enemy_projectiles` / mask `walls, player, shield`).
-- [ ] `Projectile` se autodestruye al agotar `stats.lifetime` si no chocó con nada antes.
-- [ ] `TrainingDummy` dispara un `Projectile` cada `fire_interval` (default `2.0s`) hacia la posición actual del jugador (recalculada en cada disparo).
-- [ ] `TrainingDummy` es un `StaticBody2D` en capa `enemies` (mask vacía), sin `HealthComponent`, FSM ni `NavigationAgent2D`.
-- [ ] El disco del jugador (`disc.gd`, sin cambios) rebota contra `TrainingDummy` igual que contra una pared.
-- [ ] `ShieldHitbox` (`Area2D`, capa `shield` / mask `enemy_projectiles`) existe como hijo de `ShieldPivot`, con `monitoring` sincronizado a `is_blocking` cada frame.
-- [ ] Mientras `is_blocking` y un `Projectile` con `parryable = true` entra en `ShieldHitbox`, se destruye (`queue_free`) y se emite `EventBus.disc_blocked(false)`.
-- [ ] Mientras `is_blocking` y un `Projectile` con `parryable = false` entra en `ShieldHitbox`, no pasa nada en el escudo (no se destruye ahí, sigue su trayectoria); si continúa y choca con el jugador, se destruye por la colisión física normal.
-- [ ] Sin `is_blocking` (`ShieldHitbox.monitoring = false`), cualquier `Projectile` (parryable o no) que llega al jugador se destruye por colisión física directa contra el cuerpo del `Player`, sin pasar por `ShieldHitbox`.
-- [ ] `EventBus.disc_blocked` se emite **solo** con `perfect = false` en esta spec (sin ventana de parry perfecto).
-- [ ] No se agrega `HealthComponent`, `HurtboxComponent`, `EnemyBase` ni daño real al jugador.
-- [ ] `levels/test_arena.tscn` incluye una instancia de `TrainingDummy` visible y funcional junto al `Player`.
-- [ ] F6 en `test_arena.tscn`: los 4 escenarios de arriba (disparo cada 2s, rebote del disco contra el dummy, bloqueo con `parryable = true`, atravesar con `parryable = false`) se comportan como se describe, sin errores en consola, repetible varias veces sin estado inconsistente.
-- [ ] `docs/tasks.md` no se modifica (no hay tarea explícita para esta spec, mismo criterio que specs 06/12).
+- [x] `ProjectileData` (`Resource`) existe con `speed: float`, `lifetime: float`, `parryable: bool`; `data/projectile_data.tres` tiene los 3 campos con los valores por defecto (`400.0`, `3.0`, `true`).
+- [x] `Projectile` (`CharacterBody2D`) viaja en línea recta a `stats.speed` tras `launch(direction)`.
+- [x] `Projectile` se autodestruye al chocar con una pared o con el jugador (colisión física, capa `enemy_projectiles` / mask `walls, player, shield`).
+- [x] `Projectile` se autodestruye al agotar `stats.lifetime` si no chocó con nada antes.
+- [x] `TrainingDummy` dispara un `Projectile` cada `fire_interval` (default `2.0s`) hacia la posición actual del jugador (recalculada en cada disparo).
+- [x] `TrainingDummy` es un `StaticBody2D` en capa `enemies` (mask vacía), sin `HealthComponent`, FSM ni `NavigationAgent2D`.
+- [x] El disco del jugador (`disc.gd`, sin cambios) rebota contra `TrainingDummy` igual que contra una pared.
+- [x] `ShieldHitbox` (`Area2D`, capa `shield` / mask `enemy_projectiles`) existe como hijo de `ShieldPivot`, con `monitoring` sincronizado a `is_blocking` cada frame.
+- [x] Mientras `is_blocking` y un `Projectile` con `parryable = true` entra en `ShieldHitbox`, se destruye (`queue_free`) y se emite `EventBus.disc_blocked(false)`.
+- [x] Mientras `is_blocking` y un `Projectile` con `parryable = false` entra en `ShieldHitbox`, no pasa nada en el escudo (no se destruye ahí, sigue su trayectoria); si continúa y choca con el jugador, se destruye por la colisión física normal.
+- [x] Sin `is_blocking` (`ShieldHitbox.monitoring = false`), cualquier `Projectile` (parryable o no) que llega al jugador se destruye por colisión física directa contra el cuerpo del `Player`, sin pasar por `ShieldHitbox`.
+- [x] `EventBus.disc_blocked` se emite **solo** con `perfect = false` en esta spec (sin ventana de parry perfecto).
+- [x] No se agrega `HealthComponent`, `HurtboxComponent`, `EnemyBase` ni daño real al jugador.
+- [x] `levels/test_arena.tscn` incluye una instancia de `TrainingDummy` visible y funcional junto al `Player`.
+- [x] F6 en `test_arena.tscn`: los 4 escenarios de arriba (disparo cada 2s, rebote del disco contra el dummy, bloqueo con `parryable = true`, atravesar con `parryable = false`) se comportan como se describe, sin errores en consola, repetible varias veces sin estado inconsistente.
+- [x] `docs/tasks.md` no se modifica (no hay tarea explícita para esta spec, mismo criterio que specs 06/12).
 
 ## Decisions
 

@@ -1,7 +1,8 @@
 [gd_scene format=4 uid="uid://ec2ak51ug4se"]
 
 [ext_resource type="TileSet" uid="uid://bslnw1jj44yqu" path="res://assets/tiles/test_arena_tileset.tres" id="1_tileset"]
-[ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://dlscsvps116af" path="res://entities/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://entities/enemies/training_dummy.tscn" id="3_training_dummy"]
 
 [node name="TestArena" type="Node2D" unique_id=1410201340]
 
@@ -20,3 +21,6 @@ zoom = Vector2(0.6, 0.6)
 
 [node name="Player" parent="." unique_id=1893335592 instance=ExtResource("2_player")]
 position = Vector2(928, 176)
+
+[node name="TrainingDummy" parent="." unique_id=1905780954 instance=ExtResource("3_training_dummy")]
+position = Vector2(1219, 268)
