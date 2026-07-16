@@ -23,6 +23,12 @@ func throw(direction: Vector2) -> void:
 	EventBus.disc_thrown.emit(origin, direction)
 
 func _physics_process(_delta: float) -> void:
+	if state != State.HELD:
+		flight_time += _delta
+		if flight_time >= stats.flight_timeout:
+			_return_to_held()
+			return
+
 	if state == State.FLYING:
 		var collision := move_and_collide(velocity * _delta)
 		if collision:
