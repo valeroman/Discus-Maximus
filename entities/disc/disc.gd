@@ -29,7 +29,8 @@ func _physics_process(_delta: float) -> void:
 				bounces_left -= 1
 				EventBus.disc_bounced.emit(collision.get_position(), bounces_left)
 			else:
-				_return_to_held()
+				state = State.RETURNING
+				velocity = velocity.normalized() * stats.return_speed
 
 func _return_to_held() -> void:
 	state = State.RETURNING
