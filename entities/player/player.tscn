@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bontg6blpdo6m" path="res://assets/player/player_placeholder.svg" id="1_sprite"]
 [ext_resource type="Script" uid="uid://6ukp1yavhql" path="res://entities/player/player.gd" id="2_script"]
 [ext_resource type="Resource" uid="uid://c6rly5r44m6v0" path="res://data/player_stats.tres" id="3_stats"]
+[ext_resource type="PackedScene" path="res://entities/disc/disc.tscn" id="4_disc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 24.0
@@ -19,6 +20,9 @@ texture = ExtResource("1_sprite")
 shape = SubResource("CircleShape2D_player")
 
 [node name="ShieldPivot" type="Node2D" parent="."]
+
+[node name="Disc" parent="ShieldPivot" instance=ExtResource("4_disc")]
+position = Vector2(24, 0)
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2
