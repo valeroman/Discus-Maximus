@@ -1,6 +1,6 @@
 # SPEC 10 — Retorno curvo con steering, atraviesa paredes, recogida (`disc_caught`)
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [08-disc-fsm-lanzamiento.md](08-disc-fsm-lanzamiento.md), [09-rebote-disco-paredes.md](09-rebote-disco-paredes.md)
 > **Date:** 2026-07-16
 > **Objective:** Reemplazar el teleport instantáneo de `_return_to_held()` (llamado hoy cuando `bounces_left` se agota) por una transición real al estado `RETURNING`, donde el disco persigue al jugador en tiempo real con steering curvo —`velocity` rota hacia la dirección al jugador a una tasa angular máxima `return_turn_rate`, a velocidad `return_speed`, sin llamar `move_and_collide`/`move_and_slide` (por lo que atraviesa paredes)— hasta entrar en `catch_radius`, momento en el que se recoge exactamente igual que hoy (reparenta a `HELD`, emite `EventBus.disc_caught`).
