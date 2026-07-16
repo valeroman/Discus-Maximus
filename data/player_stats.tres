@@ -4,3 +4,6 @@
 
 [resource]
 script = ExtResource("1_stats")
+dash_speed = 900.0
+dash_duration = 0.2
+dash_cooldown = 2.0
