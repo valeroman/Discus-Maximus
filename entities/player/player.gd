@@ -37,7 +37,8 @@ func _physics_process(delta: float) -> void:
 	is_blocking = Input.is_action_pressed("block") and has_disc and not is_invulnerable
 
 	if not is_invulnerable:
-		var target_velocity := input_direction * stats.move_speed
+		var speed := stats.move_speed * (stats.block_speed_multiplier if is_blocking else 1.0)
+		var target_velocity := input_direction * speed
 		var rate := stats.move_speed / stats.acceleration_time if input_direction != Vector2.ZERO else stats.move_speed / stats.friction_time
 		velocity = velocity.move_toward(target_velocity, rate * delta)
 	move_and_slide()
