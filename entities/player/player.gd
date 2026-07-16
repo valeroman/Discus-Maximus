@@ -27,6 +27,8 @@ func _on_disc_caught() -> void:
 
 func _on_shield_hitbox_body_entered(body: Node2D) -> void:
 	if body is Projectile and body.stats.parryable:
+		velocity = body.velocity.normalized() * stats.block_knockback_speed
+		Juice.shake(stats.block_shake_intensity)
 		body.block()
 
 func _physics_process(delta: float) -> void:
