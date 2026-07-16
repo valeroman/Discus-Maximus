@@ -8,3 +8,5 @@ extends Resource
 @export var dash_speed: float = 900.0        # px/s, velocidad durante el dash
 @export var dash_duration: float = 0.2       # segundos que dura el impulso + i-frames (RF-1.2)
 @export var dash_cooldown: float = 2.0       # segundos antes de poder volver a dashear (RF-1.2)
+
+@export var block_speed_multiplier: float = 0.4   # fracción de move_speed mientras BLOCK está activo
