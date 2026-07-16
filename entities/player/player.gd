@@ -19,9 +19,10 @@ func _physics_process(delta: float) -> void:
 		dash_timer.start()
 		dash_cooldown_timer.start()
 
-	var target_velocity := input_direction * stats.move_speed
-	var rate := stats.move_speed / stats.acceleration_time if input_direction != Vector2.ZERO else stats.move_speed / stats.friction_time
-	velocity = velocity.move_toward(target_velocity, rate * delta)
+	if not is_invulnerable:
+		var target_velocity := input_direction * stats.move_speed
+		var rate := stats.move_speed / stats.acceleration_time if input_direction != Vector2.ZERO else stats.move_speed / stats.friction_time
+		velocity = velocity.move_toward(target_velocity, rate * delta)
 	move_and_slide()
 
 	shield_pivot.rotation = (get_global_mouse_position() - global_position).angle()
