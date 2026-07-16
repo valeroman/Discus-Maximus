@@ -33,4 +33,8 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(target_velocity, rate * delta)
 	move_and_slide()
 
+	if is_invulnerable:
+		var elapsed := stats.dash_duration - dash_timer.time_left
+		sprite.modulate.a = 1.0 if int(elapsed / 0.05) % 2 == 0 else 0.4
+
 	shield_pivot.rotation = (get_global_mouse_position() - global_position).angle()
