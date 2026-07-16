@@ -10,6 +10,7 @@ extends CharacterBody2D
 
 var is_invulnerable: bool = false
 var has_disc: bool = true
+var is_blocking: bool = false
 
 func _ready() -> void:
 	dash_timer.timeout.connect(_on_dash_timer_timeout)
