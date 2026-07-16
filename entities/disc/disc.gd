@@ -22,6 +22,13 @@ func throw(direction: Vector2) -> void:
 	flight_time = 0.0
 	EventBus.disc_thrown.emit(origin, direction)
 
+func recall() -> void:
+	if state != State.FLYING:
+		return
+	state = State.RETURNING
+	velocity = velocity.normalized() * stats.return_speed
+	EventBus.disc_recalled.emit()
+
 func _physics_process(_delta: float) -> void:
 	if state != State.HELD:
 		flight_time += _delta
