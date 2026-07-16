@@ -1,9 +1,6 @@
-[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="PlayerStats" format=3 uid="uid://c6rly5r44m6v0"]
 
-[ext_resource type="Script" path="res://entities/player/player_stats.gd" id="1_stats"]
+[ext_resource type="Script" uid="uid://vf7gu03h0bme" path="res://entities/player/player_stats.gd" id="1_stats"]
 
 [resource]
 script = ExtResource("1_stats")
-move_speed = 320.0
-acceleration_time = 0.1
-friction_time = 0.1
