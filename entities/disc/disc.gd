@@ -6,6 +6,7 @@ enum State { HELD, FLYING, RETURNING }
 @export var stats: DiscStats
 
 var state: State = State.HELD
+var bounces_left: int = 0
 
 @onready var held_parent: Node2D = get_parent()      # ShieldPivot, capturado antes de cualquier reparent
 @onready var held_position: Vector2 = position        # offset local dentro de ShieldPivot (ej. (24, 0))
