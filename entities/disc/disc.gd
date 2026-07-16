@@ -31,6 +31,15 @@ func _physics_process(_delta: float) -> void:
 			else:
 				state = State.RETURNING
 				velocity = velocity.normalized() * stats.return_speed
+	elif state == State.RETURNING:
+		var to_target := held_parent.global_position - global_position
+		var desired_direction := to_target.normalized()
+		var angle_to_desired := velocity.angle_to(desired_direction)
+		var max_step := stats.return_turn_rate * _delta
+		velocity = velocity.rotated(clampf(angle_to_desired, -max_step, max_step))
+		global_position += velocity * _delta
+		if to_target.length() <= stats.catch_radius:
+			_return_to_held()
 
 func _return_to_held() -> void:
 	state = State.RETURNING
