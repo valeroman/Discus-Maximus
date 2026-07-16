@@ -1,6 +1,6 @@
 # SPEC 11 — Recall manual (`recall`) + timeout de seguridad de 4s
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [08-disc-fsm-lanzamiento.md](08-disc-fsm-lanzamiento.md), [10-retorno-curvo-steering.md](10-retorno-curvo-steering.md)
 > **Date:** 2026-07-16
 > **Objective:** Agregar dos triggers de retorno al disco además de "rebotes agotados": `recall` manual (click derecho durante `FLYING` → transiciona a `RETURNING` con el mismo steering curvo de spec 10, emitiendo `EventBus.disc_recalled`) y un timeout de seguridad de 4s desde el `throw` que, al expirar en cualquier estado distinto de `HELD`, fuerza la recogida instantánea (`_return_to_held()`) para que el disco nunca quede atascado/orbitando.
