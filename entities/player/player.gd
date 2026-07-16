@@ -49,3 +49,6 @@ func _physics_process(delta: float) -> void:
 		var direction := (get_global_mouse_position() - global_position).normalized()
 		disc.throw(direction)
 		has_disc = false
+
+	if Input.is_action_just_pressed("recall") and not has_disc:
+		disc.recall()
