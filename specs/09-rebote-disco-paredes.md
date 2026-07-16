@@ -1,7 +1,6 @@
 # SPEC 09 — Rebote físico del disco en paredes con contador de rebotes
 
-> **Status:** Aprobadosi
-
+> **Status:** Implementado
 > **Depends on:** [08-disc-fsm-lanzamiento.md](08-disc-fsm-lanzamiento.md)
 > **Date:** 2026-07-16
 > **Objective:** Reemplazar el teleport instantáneo `FLYING → HELD` de cualquier colisión con pared por un rebote físico real (`velocity.bounce(normal)`) controlado por un contador `bounces_left` —inicializado en cada lanzamiento desde `DiscStats.max_bounces` (base 2) más `GameState.get_stat("disc_bounces")`—, de forma que el disco rebote 2 veces contra las paredes y recién en la 3ª colisión inicie el retorno a `HELD` ya existente.
@@ -115,22 +114,22 @@ Convenciones:
 
 ## Acceptance criteria
 
-- [ ] `entities/disc/disc_stats.gd` (`DiscStats`) tiene el campo `max_bounces` (`int`, default `2`).
-- [ ] `data/disc_stats.tres` tiene `max_bounces = 2` (y conserva `fly_speed = 900.0`).
-- [ ] `entities/disc/disc.gd` tiene la variable `bounces_left: int`, sin `@export`.
-- [ ] Al lanzar el disco (`throw()`), `bounces_left` se inicializa en `stats.max_bounces + int(GameState.get_stat("disc_bounces"))` (hoy equivalente a `2 + 0 = 2`).
-- [ ] Al chocar el disco contra una pared con `bounces_left > 0`: `velocity` se refleja con `velocity.bounce(collision.get_normal())` (cambia de dirección, mantiene magnitud), `bounces_left` se decrementa en 1, el disco permanece en `state == FLYING` (no pasa por `RETURNING`/`HELD`), y se emite `EventBus.disc_bounced(position, bounces_left)` con el `bounces_left` ya decrementado.
-- [ ] Con `max_bounces = 2`, el disco rebota físicamente 2 veces contra paredes en un mismo vuelo antes de agotar el contador.
-- [ ] Al chocar el disco contra una pared con `bounces_left <= 0` (3ª colisión con la configuración base), el disco NO rebota: se comporta exactamente como en spec 08 (`_return_to_held()` sin cambios — pasa por `RETURNING` y en el mismo frame vuelve a `HELD`, reparentado a `ShieldPivot`, `velocity = Vector2.ZERO`, posición/rotación restauradas).
-- [ ] `EventBus.disc_bounced` NO se emite en la colisión que agota los rebotes (esa colisión emite únicamente `EventBus.disc_caught`, como en spec 08).
-- [ ] Al volver a `HELD` tras agotar los rebotes, `EventBus.disc_caught` se emite y `Player.has_disc` vuelve a `true`, permitiendo un nuevo lanzamiento.
-- [ ] Un nuevo lanzamiento reinicia `bounces_left` desde cero (no arrastra el valor agotado del vuelo anterior).
-- [ ] Al ejecutar `test_arena.tscn` (F6), lanzar el disco en ángulo contra una pared del perímetro produce el ciclo completo (2 rebotes reales visibles seguidos de retorno instantáneo a `HELD`) sin errores en consola.
-- [ ] Repetir el ciclo lanzar/rebotar×2/retornar varias veces seguidas no genera errores ni deja `bounces_left`, `state` o `has_disc` en un estado inconsistente.
-- [ ] `entities/disc/disc.gd` no modifica `_return_to_held()` respecto a spec 08 (mismo cuerpo exacto).
-- [ ] `autoload/game_state.gd` permanece sin cambios (sigue siendo stub, `get_stat` sigue devolviendo `0.0`).
-- [ ] `EventBus` (`autoload/event_bus.gd`) permanece sin cambios en su declaración (no se agregan señales nuevas; `disc_bounced` ya estaba declarada desde spec 01).
-- [ ] `docs/tasks.md` tiene la tarea `1.4` marcada como `[x]`.
+- [x] `entities/disc/disc_stats.gd` (`DiscStats`) tiene el campo `max_bounces` (`int`, default `2`).
+- [x] `data/disc_stats.tres` tiene `max_bounces = 2` (y conserva `fly_speed = 900.0`).
+- [x] `entities/disc/disc.gd` tiene la variable `bounces_left: int`, sin `@export`.
+- [x] Al lanzar el disco (`throw()`), `bounces_left` se inicializa en `stats.max_bounces + int(GameState.get_stat("disc_bounces"))` (hoy equivalente a `2 + 0 = 2`).
+- [x] Al chocar el disco contra una pared con `bounces_left > 0`: `velocity` se refleja con `velocity.bounce(collision.get_normal())` (cambia de dirección, mantiene magnitud), `bounces_left` se decrementa en 1, el disco permanece en `state == FLYING` (no pasa por `RETURNING`/`HELD`), y se emite `EventBus.disc_bounced(position, bounces_left)` con el `bounces_left` ya decrementado.
+- [x] Con `max_bounces = 2`, el disco rebota físicamente 2 veces contra paredes en un mismo vuelo antes de agotar el contador.
+- [x] Al chocar el disco contra una pared con `bounces_left <= 0` (3ª colisión con la configuración base), el disco NO rebota: se comporta exactamente como en spec 08 (`_return_to_held()` sin cambios — pasa por `RETURNING` y en el mismo frame vuelve a `HELD`, reparentado a `ShieldPivot`, `velocity = Vector2.ZERO`, posición/rotación restauradas).
+- [x] `EventBus.disc_bounced` NO se emite en la colisión que agota los rebotes (esa colisión emite únicamente `EventBus.disc_caught`, como en spec 08).
+- [x] Al volver a `HELD` tras agotar los rebotes, `EventBus.disc_caught` se emite y `Player.has_disc` vuelve a `true`, permitiendo un nuevo lanzamiento.
+- [x] Un nuevo lanzamiento reinicia `bounces_left` desde cero (no arrastra el valor agotado del vuelo anterior).
+- [x] Al ejecutar `test_arena.tscn` (F6), lanzar el disco en ángulo contra una pared del perímetro produce el ciclo completo (2 rebotes reales visibles seguidos de retorno instantáneo a `HELD`) sin errores en consola.
+- [x] Repetir el ciclo lanzar/rebotar×2/retornar varias veces seguidas no genera errores ni deja `bounces_left`, `state` o `has_disc` en un estado inconsistente.
+- [x] `entities/disc/disc.gd` no modifica `_return_to_held()` respecto a spec 08 (mismo cuerpo exacto).
+- [x] `autoload/game_state.gd` permanece sin cambios (sigue siendo stub, `get_stat` sigue devolviendo `0.0`).
+- [x] `EventBus` (`autoload/event_bus.gd`) permanece sin cambios en su declaración (no se agregan señales nuevas; `disc_bounced` ya estaba declarada desde spec 01).
+- [x] `docs/tasks.md` tiene la tarea `1.4` marcada como `[x]`.
 
 ## Decisions
 

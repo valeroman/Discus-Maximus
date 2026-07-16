@@ -24,7 +24,12 @@ func _physics_process(_delta: float) -> void:
 	if state == State.FLYING:
 		var collision := move_and_collide(velocity * _delta)
 		if collision:
-			_return_to_held()
+			if bounces_left > 0:
+				velocity = velocity.bounce(collision.get_normal())
+				bounces_left -= 1
+				EventBus.disc_bounced.emit(collision.get_position(), bounces_left)
+			else:
+				_return_to_held()
 
 func _return_to_held() -> void:
 	state = State.RETURNING
