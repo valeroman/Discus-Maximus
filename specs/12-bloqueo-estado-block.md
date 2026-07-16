@@ -1,6 +1,6 @@
 # SPEC 12 — Bloqueo: estado `BLOCK` (escudo frontal, velocidad 40%, no lanzar)
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [05-jugador-movimiento-8-direcciones.md](05-jugador-movimiento-8-direcciones.md), [06-jugador-apuntado-cursor.md](06-jugador-apuntado-cursor.md), [07-dash-i-frames-cooldown.md](07-dash-i-frames-cooldown.md), [08-disc-fsm-lanzamiento.md](08-disc-fsm-lanzamiento.md)
 > **Date:** 2026-07-16
 > **Objective:** Agregar al `Player` un estado de bloqueo sostenido (`BLOCK`), disponible **solo con el disco en mano** (`has_disc`), activado con la acción `block` (Left Shift, ya mapeada), que mientras está activo reduce la velocidad de movimiento al 40% (`block_speed_multiplier`), impide lanzar el disco y muestra un indicador visual en el disco/escudo frontal; el dash cancela el bloqueo.
