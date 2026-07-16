@@ -1,6 +1,6 @@
 # SPEC 08 — Disc: escena + FSM HELD/FLYING/RETURNING, lanzamiento hacia el cursor
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [02-input-map-teclado-mouse.md](02-input-map-teclado-mouse.md), [03-capas-fisica.md](03-capas-fisica.md), [06-jugador-apuntado-cursor.md](06-jugador-apuntado-cursor.md)
 > **Date:** 2026-07-16
 > **Objective:** Crear `entities/disc/` (escena `CharacterBody2D` + FSM `HELD`/`FLYING`/`RETURNING`) que el jugador lanza hacia el cursor con la acción `throw`; el disco viaja en línea recta hasta chocar con una pared —donde pasa instantáneamente por `RETURNING` de vuelta a `HELD`, sin rebote real ni steering curvo, que llegan en specs futuras (1.4/1.5)— y bloquea nuevos lanzamientos mientras el disco no está en `HELD` (`Player.has_disc`).
