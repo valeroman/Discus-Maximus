@@ -19,6 +19,7 @@ func throw(direction: Vector2) -> void:
 	state = State.FLYING
 	velocity = direction.normalized() * stats.fly_speed
 	bounces_left = stats.max_bounces + int(GameState.get_stat("disc_bounces"))
+	flight_time = 0.0
 	EventBus.disc_thrown.emit(origin, direction)
 
 func _physics_process(_delta: float) -> void:
