@@ -44,3 +44,8 @@ func _physics_process(delta: float) -> void:
 		sprite.modulate.a = 1.0 if int(elapsed / 0.05) % 2 == 0 else 0.4
 
 	shield_pivot.rotation = (get_global_mouse_position() - global_position).angle()
+
+	if Input.is_action_just_pressed("throw") and has_disc:
+		var direction := (get_global_mouse_position() - global_position).normalized()
+		disc.throw(direction)
+		has_disc = false

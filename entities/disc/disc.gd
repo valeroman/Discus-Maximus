@@ -13,6 +13,7 @@ var state: State = State.HELD
 func throw(direction: Vector2) -> void:
 	var origin := global_position
 	reparent(get_tree().current_scene, false)
+	global_position = origin
 	state = State.FLYING
 	velocity = direction.normalized() * stats.fly_speed
 	EventBus.disc_thrown.emit(origin, direction)
