@@ -16,7 +16,9 @@ func hit_stop(duration: float) -> void:
 	pass
 
 func slowmo(scale: float, duration: float) -> void:
-	pass
+	Engine.time_scale = scale
+	await get_tree().create_timer(duration, false, false, true).timeout
+	Engine.time_scale = 1.0
 
 func flash_sprite(sprite: CanvasItem) -> void:
 	pass
