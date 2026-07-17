@@ -1,6 +1,6 @@
 # SPEC 15 — Parry perfecto: ventana 0.15s, reflejo ×2 daño, slowmo + VFX cian
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [12-bloqueo-estado-block.md](12-bloqueo-estado-block.md), [13-proyectil-generico-training-dummy.md](13-proyectil-generico-training-dummy.md), [14-bloqueo-frontal-knockback-shake.md](14-bloqueo-frontal-knockback-shake.md)
 > **Date:** 2026-07-17
 > **Objective:** Agregar una ventana de parry perfecto de 0.15s (`parry_window`, nuevo `ParryWindowTimer` en `Player`, mismo patrón que `dash_timer`) al inicio de cada bloqueo (`BLOCK`, specs 12/14): si un `Projectile` `parryable` entra al `ShieldHitbox` dentro de esa ventana, en vez de destruirse (spec 13/14) se refleja (`velocity = -velocity`, sin knockback ni shake de spec 14) con el daño duplicado (`ProjectileData.damage` nuevo, dato sin consumidor real todavía — no hay `HealthComponent`) y dispara `Juice.slowmo()` y `Juice.flash_sprite()` reales por primera vez (hoy `pass`) con tinte cian (`#00f0ff`) sobre el sprite del `Player`; fuera de esa ventana, el bloqueo se comporta exactamente igual que hoy (destruye + knockback + shake).
