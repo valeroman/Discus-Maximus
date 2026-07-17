@@ -43,3 +43,6 @@ one_shot = true
 [node name="DashCooldownTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="ParryWindowTimer" type="Timer" parent="."]
+one_shot = true
