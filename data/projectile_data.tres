@@ -7,3 +7,4 @@ script = ExtResource("1_stats")
 speed = 400.0
 lifetime = 3.0
 parryable = true
+damage = 10.0
