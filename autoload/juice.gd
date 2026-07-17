@@ -21,4 +21,7 @@ func slowmo(scale: float, duration: float) -> void:
 	Engine.time_scale = 1.0
 
 func flash_sprite(sprite: CanvasItem) -> void:
-	pass
+	var original_modulate := sprite.modulate
+	var tween := create_tween()
+	tween.tween_property(sprite, "modulate", Color("#00f0ff"), 0.05)
+	tween.tween_property(sprite, "modulate", original_modulate, 0.15)
