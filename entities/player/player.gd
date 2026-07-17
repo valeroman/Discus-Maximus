@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var dash_timer: Timer = $DashTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+@onready var parry_window_timer: Timer = $ParryWindowTimer
 @onready var disc: Disc = $ShieldPivot/Disc
 @onready var shield_hitbox: Area2D = $ShieldPivot/ShieldHitbox
 
@@ -27,9 +28,15 @@ func _on_disc_caught() -> void:
 
 func _on_shield_hitbox_body_entered(body: Node2D) -> void:
 	if body is Projectile and body.stats.parryable:
-		velocity = body.velocity.normalized() * stats.block_knockback_speed
-		Juice.shake(stats.block_shake_intensity)
-		body.block()
+		if not parry_window_timer.is_stopped():
+			body.reflect(stats.parry_damage_multiplier)
+			Juice.slowmo(stats.parry_slowmo_scale, stats.parry_slowmo_duration)
+			Juice.flash_sprite(sprite)
+			EventBus.disc_blocked.emit(true)
+		else:
+			velocity = body.velocity.normalized() * stats.block_knockback_speed
+			Juice.shake(stats.block_shake_intensity)
+			body.block()
 
 func _physics_process(delta: float) -> void:
 	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -42,7 +49,10 @@ func _physics_process(delta: float) -> void:
 		dash_timer.start()
 		dash_cooldown_timer.start()
 
+	var was_blocking := is_blocking
 	is_blocking = Input.is_action_pressed("block") and has_disc and not is_invulnerable
+	if is_blocking and not was_blocking:
+		parry_window_timer.start(stats.parry_window)
 	shield_hitbox.monitoring = is_blocking
 
 	if not is_invulnerable:
