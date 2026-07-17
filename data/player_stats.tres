@@ -10,3 +10,7 @@ dash_cooldown = 2.0
 block_speed_multiplier = 0.4
 block_knockback_speed = 250.0
 block_shake_intensity = 4.0
+parry_window = 0.15
+parry_damage_multiplier = 2.0
+parry_slowmo_scale = 0.15
+parry_slowmo_duration = 0.25
