@@ -13,3 +13,8 @@ extends Resource
 
 @export var block_knockback_speed: float = 250.0   # px/s, impulso al bloquear un golpe frontal
 @export var block_shake_intensity: float = 4.0      # px, magnitud del jitter de cámara al bloquear
+
+@export var parry_window: float = 0.15              # s, ventana de parry perfecto desde que arranca BLOCK
+@export var parry_damage_multiplier: float = 2.0     # multiplicador de daño del proyectil reflejado
+@export var parry_slowmo_scale: float = 0.15         # Engine.time_scale durante el slowmo del parry
+@export var parry_slowmo_duration: float = 0.25      # s reales (no escalados) que dura el slowmo
