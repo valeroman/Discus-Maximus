@@ -42,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 			if bounces_left > 0:
 				velocity = velocity.bounce(collision.get_normal())
 				bounces_left -= 1
-				EventBus.disc_bounced.emit(collision.get_position(), bounces_left)
+				EventBus.disc_bounced.emit(collision.get_position(), bounces_left, stats.bounce_shake_intensity)
 			else:
 				state = State.RETURNING
 				velocity = velocity.normalized() * stats.return_speed
