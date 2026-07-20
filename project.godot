@@ -21,6 +21,7 @@ GameState="*res://autoload/game_state.gd"
 SaveManager="*res://autoload/save_manager.gd"
 AudioManager="*res://autoload/audio_manager.gd"
 Juice="*res://autoload/juice.gd"
+Settings="*res://autoload/settings.gd"
 
 [display]
 
