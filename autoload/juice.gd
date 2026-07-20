@@ -1,10 +1,19 @@
 extends Node
 
+const DamageNumberScene := preload("res://entities/vfx/damage_number.tscn")
+
 func _ready() -> void:
 	EventBus.disc_bounced.connect(_on_disc_bounced)
+	EventBus.damage_dealt.connect(_on_damage_dealt)
 
 func _on_disc_bounced(_position: Vector2, _bounces_left: int, shake_intensity: float) -> void:
 	shake(shake_intensity)
+
+func _on_damage_dealt(position: Vector2, amount: float, is_crit: bool) -> void:
+	var number: DamageNumber = DamageNumberScene.instantiate()
+	get_tree().current_scene.add_child(number)
+	number.global_position = position
+	number.setup(amount, is_crit)
 
 func shake(intensity: float) -> void:
 	var camera := get_viewport().get_camera_2d()
