@@ -1,6 +1,6 @@
 # SPEC 19 — Números de daño flotantes (popup visual + EventBus, verificado con TrainingDummy)
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [01-autoloads-base.md](01-autoloads-base.md), [08-disc-fsm-lanzamiento.md](08-disc-fsm-lanzamiento.md), [13-proyectil-generico-training-dummy.md](13-proyectil-generico-training-dummy.md), [18-juice-v1-estela-sfx-shake.md](18-juice-v1-estela-sfx-shake.md)
 > **Date:** 2026-07-20
 > **Objective:** Agregar `EventBus.damage_dealt(position, amount, is_crit)` y un popup de número flotante (`Label` con subida + desvanecimiento, spawneado por `Juice`) que aparece al golpear a un enemigo, verificado manualmente con `TrainingDummy` emitiendo un valor fijo (alternando crítico/normal) al ser golpeado por el disco, ya que el sistema de daño real (tarea `2.1`) todavía no existe.
