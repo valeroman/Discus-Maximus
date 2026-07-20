@@ -1,6 +1,6 @@
 # SPEC 17 — Toggle de accesibilidad: activar/desactivar el preview de puntería
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [16-preview-punteria-rebote.md](16-preview-punteria-rebote.md), [02-input-map-teclado-mouse.md](02-input-map-teclado-mouse.md), [01-autoloads-base.md](01-autoloads-base.md)
 > **Date:** 2026-07-20
 > **Objective:** Agregar un autoload `Settings` con el flag `aim_preview_enabled: bool = false` (no persistente, se resetea a `false` en cada sesión) y la acción de Input Map `toggle_aim_preview` (tecla `V`) para que el jugador active/desactive en caliente el preview de puntería de la spec 16, sin ningún indicador visual del estado.
