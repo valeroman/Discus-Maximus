@@ -1,6 +1,6 @@
 # SPEC 18 — Juice v1: estela del disco, SFX placeholder (5 eventos), shake leve al rebotar
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [01-autoloads-base.md](01-autoloads-base.md), [08-disc-fsm-lanzamiento.md](08-disc-fsm-lanzamiento.md), [09-rebote-disco-paredes.md](09-rebote-disco-paredes.md), [14-bloqueo-frontal-knockback-shake.md](14-bloqueo-frontal-knockback-shake.md), [15-parry-perfecto-reflejo-slowmo.md](15-parry-perfecto-reflejo-slowmo.md)
 > **Date:** 2026-07-20
 > **Objective:** Agregar una estela de partículas (`CPUParticles2D`) al disco mientras vuela/retorna, cablear `AudioManager.play_sfx(id)` a los 5 eventos de disco (lanzar/rebotar/recoger/bloquear/parry) y `Juice.shake()` a un nuevo shake leve al rebotar — todo disparado por `AudioManager`/`Juice` suscribiéndose ellos mismos a `EventBus` (sin que `disc.gd`/`player.gd` llamen nada nuevo), salvo la estela, que vive como nodo hijo de `Disc` controlado directamente por `disc.gd` por necesitar seguimiento continuo de posición.
@@ -95,17 +95,20 @@ func _return_to_held() -> void:
 [node name="Trail" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 20
-lifetime = 0.3
+lifetime = 0.35
 local_coords = false
 direction = Vector2(0, 0)
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 0.0
 initial_velocity_max = 0.0
-scale_amount_min = 0.3
-scale_amount_max = 0.5
-color = Color(0, 0.941176, 1, 0.6)
+scale_amount_min = 8.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_trail_scale")   # 1.0 → 0.0 sobre la vida de la partícula
+color_ramp = SubResource("Gradient_trail_fade")          # cian opaco → transparente
 ```
+
+> **Nota post-verificación (paso 7):** los valores originales (`scale_amount_min/max = 0.3/0.5`, color fijo) resultaban en un quad sub-píxel, invisible en pantalla. Decisión del usuario durante la verificación F6: subir la escala a un rango visible (8.0–10.0) y agregar `scale_amount_curve`/`color_ramp` para un look de "estela de misil" (se achica y desvanece), manteniendo `CPUParticles2D` sin textura y color cian — sin cambiar ninguna decisión arquitectónica del spec.
 
 **`autoload/juice.gd`** (agregar `_ready()`; `shake()`/`hit_stop()`/`slowmo()`/`flash_sprite()` sin cambios en su cuerpo):
 
@@ -154,21 +157,21 @@ Convenciones:
 
 ## Acceptance criteria
 
-- [ ] `entities/disc/disc_stats.gd` (`DiscStats`) tiene el campo `bounce_shake_intensity` (`float`, default `2.0`), sin remover los 7 campos previos.
-- [ ] `data/disc_stats.tres` tiene `bounce_shake_intensity = 2.0` y conserva los 7 campos previos.
-- [ ] `EventBus.disc_bounced` tiene la firma `(position: Vector2, bounces_left: int, shake_intensity: float)`.
-- [ ] `entities/disc/disc.gd` emite `disc_bounced` pasando `stats.bounce_shake_intensity` como 3er argumento.
-- [ ] `entities/disc/disc.tscn` tiene el nodo `Trail` (`CPUParticles2D`, hijo de `Disc`), `emitting = false` por defecto, `local_coords = false`, color `#00f0ff`.
-- [ ] Al lanzar el disco (`throw()`): `trail.emitting` pasa a `true` y se ve una estela cian detrás del disco mientras vuela/retorna.
-- [ ] Al recuperar el disco (`_return_to_held()`): `trail.emitting` pasa a `false` y la estela deja de emitir.
-- [ ] `autoload/juice.gd` tiene `_ready()` conectado a `EventBus.disc_bounced`; cada rebote dispara `Juice.shake(bounce_shake_intensity)` (shake más sutil que el de bloqueo, que sigue en `4.0`).
-- [ ] `Juice.hit_stop()`, `Juice.slowmo()`, `Juice.flash_sprite()` y las llamadas directas existentes en `player.gd` (bloqueo/parry) siguen sin cambios de comportamiento.
-- [ ] `autoload/audio_manager.gd` tiene `_ready()` conectado a `disc_thrown`, `disc_bounced`, `disc_caught` y `disc_blocked`; cada uno llama `play_sfx()` con el id correcto (`"throw"`, `"bounce"`, `"catch"`, `"block"`/`"parry"` según el bool `perfect`).
-- [ ] `play_sfx()` sigue siendo `pass` (sin reproducción de audio real) — el placeholder es el cableado, no el sonido.
-- [ ] No se agrega ninguna señal nueva a `EventBus` más allá de extender la firma de `disc_bounced`.
-- [ ] No se modifica `player.gd` ni las llamadas directas a `Juice`/`EventBus.disc_blocked` que ya existen ahí (specs 14/15).
-- [ ] F6 en `test_arena.tscn`: los escenarios del plan (estela visible al lanzar, estela desaparece al recoger, shake leve en cada rebote, ids correctos de SFX en los 5 eventos) se comportan como se describe, sin errores en consola, repetible varias veces.
-- [ ] `docs/tasks.md` tiene la tarea `1.9` marcada como `[x]`.
+- [x] `entities/disc/disc_stats.gd` (`DiscStats`) tiene el campo `bounce_shake_intensity` (`float`, default `2.0`), sin remover los 7 campos previos.
+- [x] `data/disc_stats.tres` tiene `bounce_shake_intensity = 2.0` y conserva los 7 campos previos.
+- [x] `EventBus.disc_bounced` tiene la firma `(position: Vector2, bounces_left: int, shake_intensity: float)`.
+- [x] `entities/disc/disc.gd` emite `disc_bounced` pasando `stats.bounce_shake_intensity` como 3er argumento.
+- [x] `entities/disc/disc.tscn` tiene el nodo `Trail` (`CPUParticles2D`, hijo de `Disc`), `emitting = false` por defecto, `local_coords = false`, color `#00f0ff`.
+- [x] Al lanzar el disco (`throw()`): `trail.emitting` pasa a `true` y se ve una estela cian detrás del disco mientras vuela/retorna.
+- [x] Al recuperar el disco (`_return_to_held()`): `trail.emitting` pasa a `false` y la estela deja de emitir.
+- [x] `autoload/juice.gd` tiene `_ready()` conectado a `EventBus.disc_bounced`; cada rebote dispara `Juice.shake(bounce_shake_intensity)` (shake más sutil que el de bloqueo, que sigue en `4.0`).
+- [x] `Juice.hit_stop()`, `Juice.slowmo()`, `Juice.flash_sprite()` y las llamadas directas existentes en `player.gd` (bloqueo/parry) siguen sin cambios de comportamiento.
+- [x] `autoload/audio_manager.gd` tiene `_ready()` conectado a `disc_thrown`, `disc_bounced`, `disc_caught` y `disc_blocked`; cada uno llama `play_sfx()` con el id correcto (`"throw"`, `"bounce"`, `"catch"`, `"block"`/`"parry"` según el bool `perfect`).
+- [x] `play_sfx()` sigue siendo `pass` (sin reproducción de audio real) — el placeholder es el cableado, no el sonido.
+- [x] No se agrega ninguna señal nueva a `EventBus` más allá de extender la firma de `disc_bounced`.
+- [x] No se modifica `player.gd` ni las llamadas directas a `Juice`/`EventBus.disc_blocked` que ya existen ahí (specs 14/15).
+- [x] F6 en `test_arena.tscn`: los escenarios del plan (estela visible al lanzar, estela desaparece al recoger, shake leve en cada rebote, ids correctos de SFX en los 5 eventos) se comportan como se describe, sin errores en consola, repetible varias veces.
+- [x] `docs/tasks.md` tiene la tarea `1.9` marcada como `[x]`.
 
 ## Decisions
 
