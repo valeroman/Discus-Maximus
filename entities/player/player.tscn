@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://6ukp1yavhql" path="res://entities/player/player.gd" id="2_script"]
 [ext_resource type="Resource" uid="uid://c6rly5r44m6v0" path="res://data/player_stats.tres" id="3_stats"]
 [ext_resource type="PackedScene" path="res://entities/disc/disc.tscn" id="4_disc"]
+[ext_resource type="Script" path="res://entities/player/aim_preview.gd" id="5_aim_preview_script"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 24.0
@@ -46,3 +47,14 @@ one_shot = true
 
 [node name="ParryWindowTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AimPreview" type="Node2D" parent="."]
+script = ExtResource("5_aim_preview_script")
+
+[node name="Segment1" type="Line2D" parent="AimPreview"]
+width = 3.0
+default_color = Color(0, 0.941176, 1, 0.9)
+
+[node name="Segment2" type="Line2D" parent="AimPreview"]
+width = 3.0
+default_color = Color(0, 0.941176, 1, 0.4)
