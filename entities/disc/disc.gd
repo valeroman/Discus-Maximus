@@ -55,10 +55,17 @@ func _physics_process(_delta: float) -> void:
 				velocity = velocity.normalized() * stats.return_speed
 				return_time = 0.0
 	elif state == State.RETURNING:
+		return_time += _delta
 		var to_target := held_parent.global_position - global_position
 		var desired_direction := to_target.normalized()
 		var angle_to_desired := velocity.angle_to(desired_direction)
-		var max_step := stats.return_turn_rate * _delta
+		var effective_turn_rate := minf(
+			stats.return_turn_rate + stats.return_turn_rate_gain * absf(angle_to_desired),
+			stats.return_straighten_turn_rate
+		)
+		if return_time >= stats.return_straighten_delay:
+			effective_turn_rate = stats.return_straighten_turn_rate
+		var max_step := effective_turn_rate * _delta
 		velocity = velocity.rotated(clampf(angle_to_desired, -max_step, max_step))
 		global_position += velocity * _delta
 		if to_target.length() <= stats.catch_radius:

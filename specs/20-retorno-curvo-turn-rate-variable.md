@@ -1,6 +1,6 @@
 # SPEC 20 — Retorno curvo más directo: turn rate variable + backstop por tiempo
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [10-retorno-curvo-steering.md](10-retorno-curvo-steering.md), [11-recall-manual-timeout.md](11-recall-manual-timeout.md)
 > **Date:** 2026-07-20
 > **Objective:** Reemplazar el `return_turn_rate` constante de `RETURNING` por un turn rate variable —más agresivo cuanto mayor es el error de ángulo hacia el jugador— más un backstop por tiempo (`return_straighten_delay`) que, si el disco lleva demasiado tiempo sin converger, sube el turn rate a un valor mucho más alto (`return_straighten_turn_rate`) para el resto del trayecto, de forma que el disco nunca describa arcos anchos ni tarde demasiado en volver, sin importar qué tan lejos del jugador esté (ej. centro de la arena).
