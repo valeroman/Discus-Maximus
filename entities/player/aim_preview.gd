@@ -5,7 +5,10 @@ extends Node2D
 @onready var segment2: Line2D = $Segment2
 
 func _physics_process(_delta: float) -> void:
-	if not (player.has_disc and not player.is_blocking):
+	if Input.is_action_just_pressed("toggle_aim_preview"):
+		Settings.aim_preview_enabled = not Settings.aim_preview_enabled
+
+	if not (Settings.aim_preview_enabled and player.has_disc and not player.is_blocking):
 		segment1.visible = false
 		segment2.visible = false
 		return
