@@ -5,6 +5,9 @@ extends Resource
 @export var max_bounces: int = 2       # rebotes base contra paredes antes de retornar (RF-2.3)
 @export var return_speed: float = 700.0      # px/s, velocidad durante RETURNING (RF-2.4)
 @export var return_turn_rate: float = 4.0    # rad/s, tasa máxima de giro del steering (curva del retorno)
+@export var return_turn_rate_gain: float = 3.0         # rad/s adicionales por radián de error de ángulo hacia el jugador
+@export var return_straighten_delay: float = 1.2       # s en RETURNING antes de forzar el backstop
+@export var return_straighten_turn_rate: float = 12.0  # techo del turn rate variable y valor del backstop incondicional
 @export var catch_radius: float = 20.0       # px, distancia al jugador para considerar el disco recogido
 @export var flight_timeout: float = 4.0      # s, tiempo máx desde throw hasta forzar recogida (seguridad anti-atasco, tarea 1.6)
 @export var aim_preview_max_distance: float = 1500.0   # px, fallback si el raycast del preview no golpea nada (tarea 1.7)
