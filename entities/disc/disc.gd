@@ -41,6 +41,9 @@ func _physics_process(_delta: float) -> void:
 	if state == State.FLYING:
 		var collision := move_and_collide(velocity * _delta)
 		if collision:
+			var collider := collision.get_collider()
+			if collider is TrainingDummy:
+				collider.on_disc_hit()
 			if bounces_left > 0:
 				velocity = velocity.bounce(collision.get_normal())
 				bounces_left -= 1

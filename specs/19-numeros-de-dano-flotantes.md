@@ -133,19 +133,19 @@ Convenciones:
 
 ## Acceptance criteria
 
-- [ ] `autoload/event_bus.gd` tiene `signal damage_dealt(position: Vector2, amount: float, is_crit: bool)`.
-- [ ] Existe `entities/vfx/damage_number.gd` (`class_name DamageNumber`) con `setup(amount, is_crit)` que fija texto, color y tamaño de fuente.
-- [ ] Existe `entities/vfx/damage_number.tscn` (`Node2D` raíz + `Label` hijo) usando ese script.
-- [ ] `autoload/juice.gd` conecta `EventBus.damage_dealt` en `_ready()` y, al recibirlo, instancia `DamageNumber` en `get_tree().current_scene`, en la posición recibida.
-- [ ] El número instanciado sube (`position.y` decrece) y se desvanece (`modulate.a` → 0) en ~0.6s, y se libera (`queue_free()`) al terminar — no quedan nodos huérfanos acumulándose.
-- [ ] Con `is_crit == false`: número en cian (`#00f0ff`), tamaño de fuente `18`.
-- [ ] Con `is_crit == true`: número en rosa (`#ff2079`), tamaño de fuente `28` (mayor que el normal).
-- [ ] `entities/enemies/training_dummy.gd` tiene `on_disc_hit()` que emite `damage_dealt(global_position, 10.0, _next_hit_is_crit)` y alterna `_next_hit_is_crit` en cada llamada.
-- [ ] `entities/disc/disc.gd` llama `collider.on_disc_hit()` cuando `collision.get_collider()` es `TrainingDummy`, sin alterar la lógica existente de rebote/retorno.
-- [ ] Golpear una pared del perímetro (no `TrainingDummy`) no dispara ningún número flotante ni llama `on_disc_hit()`.
-- [ ] No se agrega ningún campo `damage` a `DiscStats` ni a `ProjectileData`.
-- [ ] No se modifica `EventBus.player_damaged` ni ninguna lógica de daño al jugador.
-- [ ] F6 en `test_arena.tscn`: los escenarios del plan (número visible al golpear el dummy, alternancia normal/crítico en golpes sucesivos, rebote en pared sin cambios, sin errores en consola) se comportan como se describe, repetible varias veces.
+- [x] `autoload/event_bus.gd` tiene `signal damage_dealt(position: Vector2, amount: float, is_crit: bool)`.
+- [x] Existe `entities/vfx/damage_number.gd` (`class_name DamageNumber`) con `setup(amount, is_crit)` que fija texto, color y tamaño de fuente.
+- [x] Existe `entities/vfx/damage_number.tscn` (`Node2D` raíz + `Label` hijo) usando ese script.
+- [x] `autoload/juice.gd` conecta `EventBus.damage_dealt` en `_ready()` y, al recibirlo, instancia `DamageNumber` en `get_tree().current_scene`, en la posición recibida.
+- [x] El número instanciado sube (`position.y` decrece) y se desvanece (`modulate.a` → 0) en ~0.6s, y se libera (`queue_free()`) al terminar — no quedan nodos huérfanos acumulándose.
+- [x] Con `is_crit == false`: número en cian (`#00f0ff`), tamaño de fuente `18`.
+- [x] Con `is_crit == true`: número en rosa (`#ff2079`), tamaño de fuente `28` (mayor que el normal).
+- [x] `entities/enemies/training_dummy.gd` tiene `on_disc_hit()` que emite `damage_dealt(global_position, 10.0, _next_hit_is_crit)` y alterna `_next_hit_is_crit` en cada llamada.
+- [x] `entities/disc/disc.gd` llama `collider.on_disc_hit()` cuando `collision.get_collider()` es `TrainingDummy`, sin alterar la lógica existente de rebote/retorno.
+- [x] Golpear una pared del perímetro (no `TrainingDummy`) no dispara ningún número flotante ni llama `on_disc_hit()`.
+- [x] No se agrega ningún campo `damage` a `DiscStats` ni a `ProjectileData`.
+- [x] No se modifica `EventBus.player_damaged` ni ninguna lógica de daño al jugador.
+- [x] F6 en `test_arena.tscn`: los escenarios del plan (número visible al golpear el dummy, alternancia normal/crítico en golpes sucesivos, rebote en pared sin cambios, sin errores en consola) se comportan como se describe, repetible varias veces.
 
 ## Decisions
 
