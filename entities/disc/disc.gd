@@ -11,6 +11,7 @@ var flight_time: float = 0.0
 
 @onready var held_parent: Node2D = get_parent()      # ShieldPivot, capturado antes de cualquier reparent
 @onready var held_position: Vector2 = position        # offset local dentro de ShieldPivot (ej. (24, 0))
+@onready var trail: CPUParticles2D = $Trail
 
 func throw(direction: Vector2) -> void:
 	var origin := global_position
@@ -20,6 +21,7 @@ func throw(direction: Vector2) -> void:
 	velocity = direction.normalized() * stats.fly_speed
 	bounces_left = stats.max_bounces + int(GameState.get_stat("disc_bounces"))
 	flight_time = 0.0
+	trail.emitting = true
 	EventBus.disc_thrown.emit(origin, direction)
 
 func recall() -> void:
@@ -63,4 +65,5 @@ func _return_to_held() -> void:
 	position = held_position
 	rotation = 0.0
 	state = State.HELD
+	trail.emitting = false
 	EventBus.disc_caught.emit()
