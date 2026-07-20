@@ -1,7 +1,7 @@
 extends Node
 
 signal disc_thrown(origin: Vector2, direction: Vector2)
-signal disc_bounced(position: Vector2, bounces_left: int)
+signal disc_bounced(position: Vector2, bounces_left: int, shake_intensity: float)
 signal disc_caught()
 signal disc_recalled()
 signal disc_blocked(perfect: bool)
