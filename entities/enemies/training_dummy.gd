@@ -7,10 +7,16 @@ extends StaticBody2D
 
 @onready var fire_timer: Timer = $FireTimer
 
+var _next_hit_is_crit: bool = false
+
 func _ready() -> void:
 	fire_timer.wait_time = fire_interval
 	fire_timer.timeout.connect(_on_fire_timer_timeout)
 	fire_timer.start()
+
+func on_disc_hit() -> void:
+	EventBus.damage_dealt.emit(global_position, 10.0, _next_hit_is_crit)
+	_next_hit_is_crit = not _next_hit_is_crit
 
 func _on_fire_timer_timeout() -> void:
 	var target := get_tree().get_first_node_in_group("player")
