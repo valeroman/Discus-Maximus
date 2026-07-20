@@ -53,6 +53,7 @@ func _physics_process(_delta: float) -> void:
 			else:
 				state = State.RETURNING
 				velocity = velocity.normalized() * stats.return_speed
+				return_time = 0.0
 	elif state == State.RETURNING:
 		var to_target := held_parent.global_position - global_position
 		var desired_direction := to_target.normalized()
