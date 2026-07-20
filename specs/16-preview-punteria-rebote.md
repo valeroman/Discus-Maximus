@@ -1,6 +1,6 @@
 # SPEC 16 — Preview de puntería: Line2D con raycast (trayectoria + primer rebote)
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** [09-rebote-disco-paredes.md](09-rebote-disco-paredes.md), [06-jugador-apuntado-cursor.md](06-jugador-apuntado-cursor.md)
 > **Date:** 2026-07-20
 > **Objective:** Agregar un nodo `AimPreview` (script dedicado, dos `Line2D` hijos) que, mientras el jugador tenga el disco y no esté bloqueando, dibuje en tiempo real —vía `PhysicsDirectSpaceState2D.intersect_ray`, reusando `disc.collision_mask`— la trayectoria recta desde `disc.global_position` hasta la primera pared que golpearía, más un segundo segmento (más transparente) que muestra el primer rebote calculado con `Vector2.bounce()`, replicando exactamente la física real del disco (spec 09) sin ejecutarla.

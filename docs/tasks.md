@@ -19,7 +19,7 @@
 - [x] 1.4 Rebote en paredes con `bounce(normal)` y contador de rebotes.
 - [x] 1.5 Retorno con steering curvo hacia el jugador + recogida (señal `disc_caught`).
 - [x] 1.6 Recall manual y timeout de seguridad.
-- [ ] 1.7 Preview de puntería: Line2D con raycast que muestra trayectoria + primer rebote.
+- [x] 1.7 Preview de puntería: Line2D con raycast que muestra trayectoria + primer rebote.
 - [x] 1.8 Dash con i-frames y cooldown.
 - [ ] 1.9 Juice v1: estela del disco (partículas), SFX placeholder de lanzar/rebotar/recoger, micro screen shake al rebotar.
 - [ ] ✅ **Checkpoint**: 10 minutos jugando solo a lanzar el disco deben ser divertidos. Si no, iterar aquí antes de seguir.

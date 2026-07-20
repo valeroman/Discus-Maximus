@@ -34,6 +34,6 @@ func _physics_process(_delta: float) -> void:
 	segment2.points = PackedVector2Array([to_local(end1), to_local(end2)])
 
 func _cast(space_state: PhysicsDirectSpaceState2D, from: Vector2, direction: Vector2, mask: int, exclude: Array) -> Dictionary:
-	var to := from + direction * player.disc.stats.aim_preview_max_distance
+	var to: Vector2 = from + direction * player.disc.stats.aim_preview_max_distance
 	var query := PhysicsRayQueryParameters2D.create(from, to, mask, exclude)
 	return space_state.intersect_ray(query)
