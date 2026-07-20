@@ -10,3 +10,4 @@ return_speed = 700.0
 return_turn_rate = 4.0
 catch_radius = 20.0
 flight_timeout = 4.0
+aim_preview_max_distance = 1500.0
