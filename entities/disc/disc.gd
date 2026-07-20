@@ -30,6 +30,7 @@ func recall() -> void:
 		return
 	state = State.RETURNING
 	velocity = velocity.normalized() * stats.return_speed
+	return_time = 0.0
 	EventBus.disc_recalled.emit()
 
 func _physics_process(_delta: float) -> void:
