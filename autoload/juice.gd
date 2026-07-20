@@ -1,5 +1,11 @@
 extends Node
 
+func _ready() -> void:
+	EventBus.disc_bounced.connect(_on_disc_bounced)
+
+func _on_disc_bounced(_position: Vector2, _bounces_left: int, shake_intensity: float) -> void:
+	shake(shake_intensity)
+
 func shake(intensity: float) -> void:
 	var camera := get_viewport().get_camera_2d()
 	if not camera:
